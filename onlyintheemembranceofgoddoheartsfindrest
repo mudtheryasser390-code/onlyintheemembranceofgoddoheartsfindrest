@@ -63,7 +63,6 @@
       box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
     }
 
-    /* Custom Toast Notification */
     #toast {
       transition: all 0.4s ease;
       transform: translateY(-100px);
@@ -74,7 +73,6 @@
       opacity: 1;
     }
 
-    /* Particles animation effect */
     .bg-glow-orb {
       position: absolute;
       border-radius: 50%;
@@ -95,9 +93,9 @@
     <span id="toast-message">مرحباً بك!</span>
   </div>
 
-  <!-- 1. SPLASH SCREEN / INTRO -->
+  <!-- 1. SPLASH SCREEN -->
   <div id="splash-screen" class="fixed inset-0 z-40 bg-brand-black/95 flex flex-col items-center justify-center text-center p-6 transition-opacity duration-700">
-    <div class="max-w-2xl space-y-8 animate-fade-in">
+    <div class="max-w-2xl space-y-8">
       <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-tr from-brand-purple to-brand-neon p-1 box-glow">
         <div class="w-full h-full bg-brand-black rounded-full flex items-center justify-center">
           <svg class="w-12 h-12 text-brand-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -120,7 +118,7 @@
     </div>
   </div>
 
-  <!-- 2. NAVBAR -->
+  <!-- NAVBAR -->
   <header class="relative z-10 glass-card border-b border-purple-900/40 py-4 px-6 md:px-12 flex justify-between items-center">
     <div class="flex items-center space-x-3 space-x-reverse">
       <div class="w-10 h-10 rounded-lg bg-brand-purple/30 border border-brand-neon/50 flex items-center justify-center">
@@ -142,11 +140,10 @@
   <!-- MAIN CONTAINER -->
   <main class="relative z-10 flex-1 flex items-center justify-center p-4 md:p-8">
 
-    <!-- 3. AUTH FORM SECTION -->
+    <!-- 2. AUTH SECTION -->
     <section id="auth-section" class="w-full max-w-md">
       <div class="glass-card rounded-2xl p-8 shadow-2xl relative overflow-hidden">
         
-        <!-- Toggle Tabs -->
         <div class="flex bg-brand-dark/80 p-1 rounded-xl mb-6 border border-purple-900/50">
           <button id="tab-login" onclick="switchTab('login')" class="flex-1 py-2 rounded-lg font-semibold text-sm transition-all bg-brand-purple text-white shadow">
             تسجيل الدخول
@@ -158,7 +155,6 @@
 
         <h2 id="auth-title" class="text-2xl font-bold text-center text-white mb-6">تسجيل الدخول</h2>
 
-        <!-- Step 1: Login / Register Input -->
         <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-4">
           <div>
             <label class="block text-xs font-semibold text-gray-300 mb-1">البريد الإلكتروني</label>
@@ -175,73 +171,37 @@
           </button>
         </form>
 
-        <!-- Step 2: Verification Code (Hidden initially) -->
-        <div id="verify-section" class="hidden space-y-4 mt-4">
-          <p class="text-xs text-gray-300 text-center">
-            تم إرسال كود التفعيل المكون من 6 أرقام إلى بريدك الإلكتروني: <br>
-            <span id="target-email" class="text-brand-accent font-mono font-semibold"></span>
-          </p>
-
-          <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1 text-center">أدخل رمز التحقق (6 أرقام)</label>
-            <input type="text" id="otp-input" maxlength="6" placeholder="123456" class="w-full bg-brand-black/60 border border-purple-900 focus:border-brand-neon rounded-xl px-4 py-3 text-center text-2xl font-mono tracking-widest text-brand-accent outline-none transition-all">
-          </div>
-
-          <button onclick="verifyCode()" class="w-full bg-brand-neon hover:bg-brand-purple text-white font-bold py-3 rounded-xl transition-all shadow-lg text-sm">
-            تأكيد وإنشاء الحساب
-          </button>
-
-          <button onclick="resendCode()" id="resend-btn" class="w-full text-xs text-gray-400 hover:text-brand-accent transition-all text-center block pt-2">
-            إعادة إرسال الرمز
-          </button>
-        </div>
-
       </div>
     </section>
 
-    <!-- 4. DASHBOARD / VIDEOS SECTION (Hidden initially) -->
+    <!-- 3. LOADING SCREEN (انتظر قليلاً) -->
+    <section id="loading-section" class="hidden w-full max-w-md text-center py-12">
+      <div class="glass-card rounded-2xl p-8 shadow-2xl space-y-6">
+        <div class="w-16 h-16 border-4 border-brand-neon border-t-transparent rounded-full animate-spin mx-auto"></div>
+        <h2 class="text-2xl font-bold text-white">جاري التحميل...</h2>
+        <p class="text-gray-300 text-sm">انتظر قليلاً، يتم تجهيز مساحتك الخاصة الآن...</p>
+      </div>
+    </section>
+
+    <!-- 4. DASHBOARD / 6 SPECIFIC VIDEOS -->
     <section id="dashboard-section" class="hidden w-full max-w-6xl py-6">
-      
-      <!-- Welcome Bar -->
       <div class="glass-card rounded-2xl p-6 mb-8 border border-brand-purple/30 flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
           <h2 class="text-2xl font-bold text-white mb-1">مرحباً بك مجدداً 👋</h2>
-          <p class="text-sm text-gray-400">اختر من الفيديوهات التالية لمساعدتك في المذاكرة والراحة النفسية والاستماع للقرآن الكريم.</p>
+          <p class="text-sm text-gray-400">مجموعتك المحددة من الفيديوهات للراحة النفسية والتحفيز والقرآن الكريم.</p>
         </div>
         <div class="px-4 py-2 bg-brand-purple/20 border border-brand-accent/30 rounded-xl text-brand-accent text-sm font-semibold">
           ✨ محتوى مختار بعناية
         </div>
       </div>
 
-      <!-- Videos Grid -->
+      <!-- Videos Grid (الـ 6 فيديوهات المحددة) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <!-- Card 1: كيفية المذاكرة -->
+        <!-- 1. سورة الكهف -->
         <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col">
           <div class="relative aspect-video w-full">
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/5mGF9Pz916s" title="كيف تذاكر بذكاء" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="p-4 flex-1 flex flex-col justify-between">
-            <h3 class="font-bold text-lg text-white mb-2">إزاي تذاكر بذكاء وبأعلى تركيز</h3>
-            <span class="text-xs text-brand-accent bg-brand-purple/30 w-fit px-2.5 py-1 rounded-md">تطوير الذات والمذاكرة</span>
-          </div>
-        </div>
-
-        <!-- Card 2: الراحة النفسية -->
-        <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col">
-          <div class="relative aspect-video w-full">
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/3f0P9YIInP8" title="ازاي تبقى مرتاح نفسيا" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div class="p-4 flex-1 flex flex-col justify-between">
-            <h3 class="font-bold text-lg text-white mb-2">ازاي تبقى مرتاح نفسياً وتتخلص من القلق</h3>
-            <span class="text-xs text-brand-accent bg-brand-purple/30 w-fit px-2.5 py-1 rounded-md">صحة نفسية</span>
-          </div>
-        </div>
-
-        <!-- Card 3: سورة الكهف -->
-        <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col">
-          <div class="relative aspect-video w-full">
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/6T_S833jA_E" title="سورة الكهف" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/6T_S833jA_E" title="سورة الكهف" frameborder="0" allowfullscreen></iframe>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-bold text-lg text-white mb-2">سورة الكهف - طمأنينة ونور</h3>
@@ -249,10 +209,10 @@
           </div>
         </div>
 
-        <!-- Card 4: سورة البقرة -->
+        <!-- 2. سورة البقرة -->
         <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col">
           <div class="relative aspect-video w-full">
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/VDy8G1aXyU8" title="سورة البقرة" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/VDy8G1aXyU8" title="سورة البقرة" frameborder="0" allowfullscreen></iframe>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
             <h3 class="font-bold text-lg text-white mb-2">سورة البقرة كاملة - البركة والشفاء</h3>
@@ -260,30 +220,51 @@
           </div>
         </div>
 
-        <!-- Card 5: سورة الواقعة -->
+        <!-- 3. معالجة راحة النفس والتخلص من القلق -->
         <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col">
           <div class="relative aspect-video w-full">
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/N3XvKmsyTsc" title="سورة الواقعة" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/3f0P9YIInP8" title="الراحة النفسية" frameborder="0" allowfullscreen></iframe>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
-            <h3 class="font-bold text-lg text-white mb-2">سورة الواقعة - جلب الرزق والسكينة</h3>
-            <span class="text-xs text-brand-accent bg-brand-purple/30 w-fit px-2.5 py-1 rounded-md">القرآن الكريم</span>
+            <h3 class="font-bold text-lg text-white mb-2">ازاي تبقى مرتاح نفسياً وتتخلص من القلق</h3>
+            <span class="text-xs text-brand-accent bg-brand-purple/30 w-fit px-2.5 py-1 rounded-md">صحة نفسية وراحة البال</span>
           </div>
         </div>
 
-        <!-- Card 6: سورة الملك -->
+        <!-- 4. فيديو تحفيزي -->
         <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col">
           <div class="relative aspect-video w-full">
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/z64MvG5m48A" title="سورة الملك" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/5mGF9Pz916s" title="فيديو تحفيزي" frameborder="0" allowfullscreen></iframe>
           </div>
           <div class="p-4 flex-1 flex flex-col justify-between">
-            <h3 class="font-bold text-lg text-white mb-2">سورة الملك - المنجية من عذاب القبر</h3>
-            <span class="text-xs text-brand-accent bg-brand-purple/30 w-fit px-2.5 py-1 rounded-md">القرآن الكريم</span>
+            <h3 class="font-bold text-lg text-white mb-2">فيديو تحفيزي - إزاي تذاكر وتوصل لهدفك</h3>
+            <span class="text-xs text-brand-accent bg-brand-purple/30 w-fit px-2.5 py-1 rounded-md">تحفيز وتطوير الذات</span>
+          </div>
+        </div>
+
+        <!-- 5. فيديو للشيخ سمير مصطفى -->
+        <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col">
+          <div class="relative aspect-video w-full">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/S26J33kYjxs" title="الشيخ سمير مصطفى" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <h3 class="font-bold text-lg text-white mb-2">موعظة مؤلمة ومؤثرة - الشيخ سمير مصطفى</h3>
+            <span class="text-xs text-brand-accent bg-brand-purple/30 w-fit px-2.5 py-1 rounded-md">الشيخ سمير مصطفى</span>
+          </div>
+        </div>
+
+        <!-- 6. فيديو للشيخ أمجد سمير -->
+        <div class="glass-card rounded-2xl overflow-hidden transition-all duration-300 flex flex-col">
+          <div class="relative aspect-video w-full">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/9XfL6yRkBJ8" title="الشيخ أمجد سمير" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <h3 class="font-bold text-lg text-white mb-2">كلمات مؤثرة لتنظيم الحياة والهدف - الشيخ أمجد سمير</h3>
+            <span class="text-xs text-brand-accent bg-brand-purple/30 w-fit px-2.5 py-1 rounded-md">الشيخ أمجد سمير</span>
           </div>
         </div>
 
       </div>
-
     </section>
 
   </main>
@@ -293,13 +274,10 @@
     <p>جميع الحقوق محفوظة © 2026 - موقع "أَلا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ"</p>
   </footer>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- SCRIPT LOGIC -->
   <script>
-    let currentMode = 'login'; // 'login' or 'register'
-    let generatedOtp = null;
-    let pendingUserData = null;
+    let currentMode = 'login';
 
-    // Toast Function
     function showToast(message) {
       const toast = document.getElementById('toast');
       const toastMsg = document.getElementById('toast-message');
@@ -310,7 +288,6 @@
       }, 3500);
     }
 
-    // Splash Screen Transition
     function enterSite() {
       const splash = document.getElementById('splash-screen');
       splash.style.opacity = '0';
@@ -320,27 +297,21 @@
       }, 700);
     }
 
-    // Check Active Session
     function checkSession() {
       const activeUser = localStorage.getItem('activeUser');
       if (activeUser) {
-        showDashboard(activeUser);
+        startLoadingProcess(activeUser);
       } else {
         showAuthForm();
       }
     }
 
-    // Switch Login / Register Tabs
     function switchTab(mode) {
       currentMode = mode;
       const tabLogin = document.getElementById('tab-login');
       const tabRegister = document.getElementById('tab-register');
       const authTitle = document.getElementById('auth-title');
       const submitBtn = document.getElementById('submit-btn');
-
-      // Reset Forms
-      document.getElementById('auth-form').classList.remove('hidden');
-      document.getElementById('verify-section').classList.add('hidden');
 
       if (mode === 'login') {
         tabLogin.className = 'flex-1 py-2 rounded-lg font-semibold text-sm transition-all bg-brand-purple text-white shadow';
@@ -351,11 +322,10 @@
         tabRegister.className = 'flex-1 py-2 rounded-lg font-semibold text-sm transition-all bg-brand-purple text-white shadow';
         tabLogin.className = 'flex-1 py-2 rounded-lg font-semibold text-sm transition-all text-gray-400 hover:text-white';
         authTitle.textContent = 'إنشاء حساب جديد';
-        submitBtn.textContent = 'إرسال كود التفعيل للبريد';
+        submitBtn.textContent = 'إنشاء حساب وتسجيل الدخول';
       }
     }
 
-    // Handle Login or Register Form Submit
     function handleAuthSubmit(event) {
       event.preventDefault();
       const email = document.getElementById('email-input').value.trim();
@@ -364,85 +334,48 @@
       const users = JSON.parse(localStorage.getItem('users') || '{}');
 
       if (currentMode === 'login') {
-        // LOGIN LOGIC
         if (users[email] && users[email] === password) {
           localStorage.setItem('activeUser', email);
-          showToast('تم تسجيل الدخول بنجاح! أهلاً بك.');
-          showDashboard(email);
+          showToast('تم تسجيل الدخول بنجاح!');
+          startLoadingProcess(email);
         } else {
           showToast('البريد الإلكتروني أو كلمة السر غير صحيحة!');
         }
       } else {
-        // REGISTER LOGIC -> Generate OTP
-        if (users[email]) {
-          showToast('هذا البريد مسجل بالفعل، يمكنك تسجيل الدخول.');
-          switchTab('login');
-          return;
-        }
-
-        pendingUserData = { email, password };
-        generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
-        
-        // Simulating Sending Email Code
-        document.getElementById('target-email').textContent = email;
-        document.getElementById('auth-form').classList.add('hidden');
-        document.getElementById('verify-section').classList.remove('hidden');
-
-        showToast(`كود التفعيل التجريبي هو: ${generatedOtp}`);
-        console.log("رمز التحقق الخاص بك هو:", generatedOtp);
-      }
-    }
-
-    // Verify OTP Code
-    function verifyCode() {
-      const userOtp = document.getElementById('otp-input').value.trim();
-
-      if (userOtp === generatedOtp && pendingUserData) {
-        // Save User
-        const users = JSON.parse(localStorage.getItem('users') || '{}');
-        users[pendingUserData.email] = pendingUserData.password;
+        users[email] = password;
         localStorage.setItem('users', JSON.stringify(users));
-
-        // Auto Login
-        localStorage.setItem('activeUser', pendingUserData.email);
-        
-        showToast('تم تأكيد الحساب بنجاح! مرحباً بك.');
-        showDashboard(pendingUserData.email);
-
-        // Reset state
-        pendingUserData = null;
-        generatedOtp = null;
-      } else {
-        showToast('رمز التحقق غير صحيح، حاول مرة أخرى.');
+        localStorage.setItem('activeUser', email);
+        showToast('تم إنشاء الحساب بنجاح!');
+        startLoadingProcess(email);
       }
     }
 
-    // Resend Code
-    function resendCode() {
-      if (!pendingUserData) return;
-      generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
-      showToast(`تم إرسال كود جديد: ${generatedOtp}`);
-      console.log("رمز التحقق الجديد:", generatedOtp);
+    function startLoadingProcess(email) {
+      document.getElementById('auth-section').classList.add('hidden');
+      document.getElementById('dashboard-section').classList.add('hidden');
+      document.getElementById('loading-section').classList.remove('hidden');
+
+      setTimeout(() => {
+        showDashboard(email);
+      }, 60000); 
     }
 
-    // Display Dashboard
     function showDashboard(email) {
-      document.getElementById('auth-section').classList.add('hidden');
+      document.getElementById('loading-section').classList.add('hidden');
       document.getElementById('dashboard-section').classList.remove('hidden');
       document.getElementById('user-controls').classList.remove('hidden');
       document.getElementById('user-controls').classList.add('flex');
       document.getElementById('user-email-display').textContent = email;
     }
 
-    // Show Auth Form
     function showAuthForm() {
       document.getElementById('auth-section').classList.remove('hidden');
+      document.getElementById('loading-section').classList.add('hidden');
       document.getElementById('dashboard-section').classList.add('hidden');
       document.getElementById('user-controls').classList.add('hidden');
       document.getElementById('user-controls').classList.remove('flex');
     }
 
-    // Logout
     function logout() {
       localStorage.removeItem('activeUser');
       showToast('تم تسجيل الخروج بنجاح.');
